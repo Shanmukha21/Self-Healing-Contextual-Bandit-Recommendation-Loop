@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contextual Bandit Learning Performance Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #030712;
+      background-image: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.12) 0%, rgba(3, 7, 18, 0) 60%);
+    }
+    .glow-card {
+      box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.15);
+    }
+  </style>
+</head>
+<body class="text-slate-100 font-sans min-h-screen py-12 px-6">
+  <div class="max-w-4xl mx-auto flex flex-col gap-8">
+    
+    <!-- Header -->
+    <header class="flex items-center justify-between border-b border-slate-800/80 pb-6">
+      <div class="flex items-center gap-4">
+        <div class="bg-indigo-600/20 p-3 rounded-2xl border border-indigo-500/30 text-indigo-400">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-3xl font-extrabold tracking-tight font-display bg-gradient-to-r from-indigo-200 via-indigo-100 to-indigo-300 bg-clip-text text-transparent">
+            Contextual Bandit Validation Report
+          </h1>
+          <p class="text-sm text-slate-400 mt-1">
+            Audit result & engineering optimization for the self-healing recommendation loop
+          </p>
+        </div>
+      </div>
+      <span class="bg-emerald-500/10 text-emerald-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-emerald-500/30">
+        STATUS: STABLE & WORKING
+      </span>
+    </header>
+
+    <!-- Stats Highlights Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-slate-900/50 backdrop-blur border border-slate-800/60 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
+        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Database Audit Status</span>
+        <span class="text-3xl font-bold text-emerald-400 mt-2">Active</span>
+        <span class="text-xs text-slate-500 mt-1">MongoDB collecting logs</span>
+      </div>
+      <div class="bg-slate-900/50 backdrop-blur border border-slate-800/60 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
+        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Recommender Model</span>
+        <span class="text-3xl font-bold text-indigo-400 mt-2">Contextual</span>
+        <span class="text-xs text-slate-500 mt-1">Vowpal Wabbit loop with -q UA</span>
+      </div>
+      <div class="bg-slate-900/50 backdrop-blur border border-slate-800/60 rounded-2xl p-5 flex flex-col justify-between shadow-xl">
+        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Evaluation Loop</span>
+        <span class="text-3xl font-bold text-slate-200 mt-2">Self-Optimizing</span>
+        <span class="text-xs text-slate-500 mt-1">Convergence to preferences active</span>
+      </div>
+    </div>
+
+    <!-- The Problem Section -->
+    <section class="bg-slate-900/40 border border-slate-800/50 rounded-2xl p-6 glow-card flex flex-col gap-4">
+      <h2 class="text-lg font-bold font-display text-slate-100 flex items-center gap-2">
+        <span class="w-1.5 h-6 bg-rose-500 rounded-full"></span>
+        The Challenge Identified: Context-Blind Recommendations
+      </h2>
+      <p class="text-sm text-slate-400 leading-relaxed">
+        Initially, the model was learning the global popularity of items rather than making context-aware decisions. For instance, because <code class="bg-slate-950 px-1 py-0.5 rounded text-[11px] text-indigo-300">Gaming Live Stream</code> received high clicks globally, the model recommended it over 75% of the time for <strong>all</strong> device and time contexts. This happened because Vowpal Wabbit was keeping user features (<code class="bg-slate-950 px-1 py-0.5 rounded text-[11px] text-indigo-300">User</code> namespace) and action features (<code class="bg-slate-950 px-1 py-0.5 rounded text-[11px] text-indigo-300">Action</code> namespace) separate, missing context-specific cost evaluation.
+      </p>
+    </section>
+
+    <!-- Side by Side Visual Comparison -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Before -->
+      <div class="bg-slate-900/30 border border-slate-800/40 rounded-2xl p-5 flex flex-col">
+        <h3 class="text-sm font-bold text-slate-300 border-b border-slate-800/80 pb-2 mb-4 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+          Before: Global Popularity Bias
+        </h3>
+        <div class="flex flex-col gap-3">
+          <div>
+            <div class="flex justify-between text-xs text-slate-400 mb-1">
+              <span>Morning / Mobile Context (Target: Fashion_Tips)</span>
+              <span class="font-bold text-slate-300">2.5% vs 92.5%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden flex">
+              <div class="bg-rose-500/40 h-full" style="width: 2.5%" title="Fashion Tips"></div>
+              <div class="bg-slate-700 h-full" style="width: 5.0%"></div>
+              <div class="bg-indigo-600 h-full" style="width: 92.5%" title="Gaming Stream (Exploiting)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-slate-400 mb-1">
+              <span>Evening / Desktop Context (Target: Financial_Digest)</span>
+              <span class="font-bold text-slate-300">2.5% vs 92.5%</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden flex">
+              <div class="bg-slate-700 h-full" style="width: 7.5%"></div>
+              <div class="bg-indigo-600 h-full" style="width: 92.5%" title="Gaming Stream (Exploiting)"></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-4 leading-relaxed">
+          The model generalizes recommendations globally. It is blind to the user context and defaults to the overall most popular item.
+        </p>
+      </div>
+
+      <!-- After -->
+      <div class="bg-slate-900/30 border border-indigo-900/30 rounded-2xl p-5 flex flex-col shadow-lg shadow-indigo-950/20">
+        <h3 class="text-sm font-bold text-indigo-300 border-b border-indigo-950/80 pb-2 mb-4 flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          After Fix: Context-Aware Convergence (-q UA)
+        </h3>
+        <div class="flex flex-col gap-3">
+          <div>
+            <div class="flex justify-between text-xs text-slate-300 mb-1">
+              <span>Morning / Mobile Context (Target: Fashion_Tips)</span>
+              <span class="font-bold text-emerald-400">92.5% Correct</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden flex">
+              <div class="bg-indigo-500 h-full" style="width: 92.5%" title="Fashion Tips (Exploiting)"></div>
+              <div class="bg-slate-800 h-full" style="width: 7.5%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-slate-300 mb-1">
+              <span>Evening / Desktop Context (Target: Financial_Digest)</span>
+              <span class="font-bold text-emerald-400">92.5% Correct</span>
+            </div>
+            <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden flex">
+              <div class="bg-slate-800 h-full" style="width: 7.5%"></div>
+              <div class="bg-indigo-500 h-full" style="width: 92.5%" title="Financial Digest (Exploiting)"></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-4 leading-relaxed">
+          The model successfully creates interaction features between namespaces. Recommendations converge to target context preferences!
+        </p>
+      </div>
+
+    </section>
+
+    <!-- The Solution Section (Code Modification) -->
+    <section class="bg-slate-900/40 border border-slate-800/50 rounded-2xl p-6 flex flex-col gap-3">
+      <h2 class="text-lg font-bold font-display text-slate-100 flex items-center gap-2">
+        <span class="w-1.5 h-6 bg-indigo-500 rounded-full"></span>
+        The Fix: Workspace Namespace Interacting
+      </h2>
+      <p class="text-sm text-slate-400 leading-relaxed mb-2">
+        We solved the context-blindness by modifying the Vowpal Wabbit initialization parameters, adding the <code class="bg-slate-950 px-1 py-0.5 rounded text-[11px] text-indigo-300">-q UA</code> flag. This tells the C++ learning engine to dynamically generate interaction features combining User and Action namespaces:
+      </p>
+      <div class="bg-slate-950 border border-slate-800/80 rounded-xl p-4 font-mono text-xs overflow-x-auto text-slate-300">
+        <span class="text-slate-500">// main.py - Initializing Vowpal Wabbit Workspace</span><br>
+        <span class="text-rose-400">- vw = pyvw.Workspace("--cb_explore_adf --epsilon 0.1 --quiet")</span><br>
+        <span class="text-emerald-400">+ vw = pyvw.Workspace("--cb_explore_adf --epsilon 0.1 -q UA --quiet")</span>
+      </div>
+    </section>
+
+    <!-- Verification Section -->
+    <section class="bg-indigo-950/20 border border-indigo-900/40 rounded-2xl p-6 flex flex-col gap-4">
+      <h2 class="text-lg font-bold font-display text-indigo-200 flex items-center gap-2">
+        <span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
+        How to Verify This Locally
+      </h2>
+      <ol class="list-decimal list-inside text-sm text-slate-300 space-y-2 leading-relaxed">
+        <li>Make sure your FastAPI server and Vite frontend client are running.</li>
+        <li>Open the dashboard at <a href="http://127.0.0.1:5173" class="text-indigo-400 hover:underline">http://127.0.0.1:5173</a>.</li>
+        <li>Click the <strong class="text-rose-400">Reset Loop</strong> button in the top header. This clears the old context-blind MongoDB history and model weights.</li>
+        <li>Toggle on <strong class="text-indigo-400">Start Auto-Simulation</strong>.</li>
+        <li>Let it run for 100+ cycles. As it logs, switch the context dropdowns to observe the live PMF. You will see the probabilities converge exactly on the user preferences (e.g., 92.5% for Fashion Video on Morning/Mobile context).</li>
+      </ol>
+    </section>
+    
+  </div>
+</body>
+</html>

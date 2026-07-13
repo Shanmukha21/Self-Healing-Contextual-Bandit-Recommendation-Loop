@@ -1,0 +1,24 @@
+# Virtual Environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Local Database Binaries
+mongodb_data/
+
+# Frontend Node Modules & Production Builds
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# System/IDE Caches
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
