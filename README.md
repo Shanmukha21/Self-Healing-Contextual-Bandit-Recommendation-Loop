@@ -153,6 +153,7 @@ MongoDB documents in the `recommendation_logs` collection store the full interac
 }
 ```
 
+
 To audit logs directly from your terminal, run the query script:
 ```powershell
 python C:\Users\shanm\.gemini\antigravity-ide\brain\b18c31a9-827d-4d54-92d4-4c328628cf62\scratch\query_db.py
